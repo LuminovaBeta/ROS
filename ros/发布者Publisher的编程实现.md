@@ -1,3 +1,37 @@
+### 导入 Twist 消息类型
+```python
+from geometry_msgs.msg import Twist
+```
+Twist 用于表示速度指令，常用于控制小车、机器人或乌龟的运动，例如通过 /cmd_vel 话题。
+
+### python 代码实现
+```python
+#!/usr/bin/env python3
+
+import rospy
+from geometry_msgs.msg import Twist
+
+def velocity_publisher():
+    # 初始化节点
+    rospy.init_node('vliocity_publisher', anonymous=True)
+    # 
+    turtle_vel_pub = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size = 10)
+    rate = rospy.Rate(10)
+    while not rospy.is_shutdown():
+        vel_msg = Twist()
+        vel_msg.linear.x = 0.5
+        vel_msg.angular.z = 0.2
+        turtle_vel_pub.publish(vel_msg)
+        rospy.loginfo("Publish turtle velocity command[%0.2f m/s, %0.2f rad/s]", vel_msg.linear.x, vel_msg.angular.z)
+        rate.sleep()
+if __name__ == '__main__':
+    try:
+        velocity_publisher()
+    except rospy.ROSInterruptException:
+        pass
+```
+
+
 创建工作空间
 创建功能包
 ```
