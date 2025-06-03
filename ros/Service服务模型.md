@@ -25,3 +25,17 @@ if __name__ == '__main__':
 ```
 
 ## 二、
+### 
+```python
+from std_srvs.srv import Trigger, TriggerResponse
+```
+从 ROS 的 std_srvs 包中导入 Trigger 服务类型，以及它的响应类型 TriggerResponse。
+Trigger 是一个标准服务类型，没有请求参数，只返回一个布尔结果和字符串消息
+
+
+
+
+
+
+
+
